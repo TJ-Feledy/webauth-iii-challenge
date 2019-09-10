@@ -1,0 +1,30 @@
+{
+  "name": "webauth-iii-challenge",
+  "version": "1.0.0",
+  "description": "Web Tokens",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.19.4",
+    "nodemon": "^1.19.2",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "server": "index.js nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TJ-Feledy/webauth-iii-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TJ-Feledy/webauth-iii-challenge/issues"
+  },
+  "homepage": "https://github.com/TJ-Feledy/webauth-iii-challenge#readme"
+}

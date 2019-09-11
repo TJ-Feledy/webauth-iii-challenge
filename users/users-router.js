@@ -6,6 +6,7 @@ const Users = require('./users-model.js')
 
 // ***endpoints start with /api/users***
 
+// Register endpoint:
 router.post('/register', (req, res) => {
   let user = req.body
   const hash = bcrypt.hashSync(user.password, 10)
@@ -24,6 +25,31 @@ router.post('/register', (req, res) => {
       res.status(500).json({ errorMessage: `${err}` })
     })
 })
+
+// Login endpoint:
+router.post('/login', (req, res) => {
+  const {username, password} = req.body
+
+  Users.findBy({username}).first()
+    .then(user => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+        const token = generateToken(user)
+
+        res.status(200).json({
+          message: `${user.username}, you shall pass.`,
+          token
+        })
+      }else {
+        res.status(401).json({ message: 'You shall not pass!' })
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ errorMessage: `${err}` })
+    })
+})
+
+// Get users endpoint:
+
 
 //***********Create a JWT for a user*************
 function generateToken(user) {

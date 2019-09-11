@@ -1,5 +1,8 @@
 
 exports.up = function(knex) {
+
+  // Create a table with username, password, and department... all fields required and username should be unique.
+
   return knex.schema.createTable('users', tbl => {
     tbl.increments()
     tbl.string('username').notNullable().unique()

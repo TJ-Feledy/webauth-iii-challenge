@@ -39,4 +39,23 @@ function generateToken(user) {
   return jwt.sign(payload, process.env.JWT_SECRET, options)
 }
 
+//***********Restricted Middleware***************
+function restricted(req, res, next) {
+  const token = req.headers.authorization
+
+  // check for a token and see if it is valid
+  if (token) {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+      if (err) {
+        res.status(401).json({ message: 'not verified' })
+      }else {
+        req.decodedToken = decodedToken
+        next()
+      }
+    })
+  }else {
+    res.status(400).json({ message: 'no token provided' })
+  }
+}
+
 module.exports = router

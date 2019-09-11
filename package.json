@@ -15,7 +15,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "test",
-    "server": "index.js nodemon"
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",

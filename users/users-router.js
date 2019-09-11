@@ -49,9 +49,17 @@ router.post('/login', (req, res) => {
 })
 
 // Get users endpoint:
+router.get('/', restricted, (req, res) => {
+  Users.find()
+    .then(users => {
+      res.json(users)
+    })
+    .catch(err => {
+      res.status(500).json({ errorMessage: `${err}` })
+    })
+})
 
-
-//***********Create a JWT for a user*************
+//***********Create a JWT for a user ( middleware )*************
 function generateToken(user) {
   const payload = {
     id: user.id,
@@ -80,7 +88,7 @@ function restricted(req, res, next) {
       }
     })
   }else {
-    res.status(400).json({ message: 'no token provided' })
+    res.status(400).json({ message: 'You shall not pass!' })
   }
 }
 
